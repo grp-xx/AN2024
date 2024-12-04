@@ -10,6 +10,7 @@ int main() {
     auto srv_port=10000;
     npl::socket<AF_INET, SOCK_DGRAM> sock;
     npl::sockaddress<AF_INET> srv_addr(srv_port);
+    // npl::sockaddress<AF_INET> srv_addr("127.0.0.1",srv_port);
     sock.bind(srv_addr);
 
     for(;;) {
