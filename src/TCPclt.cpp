@@ -11,5 +11,27 @@ int main(int argc, char* argv[])
         return (1);
     }
 
+    npl::socket<AF_INET,SOCK_STREAM> sock;
+
+    std::string srv_ip_addr(argv[1]);
+    int srv_port = std::atoi(argv[2]);
+
+    npl::sockaddress<AF_INET> srv_addr(srv_ip_addr,srv_port);
+
+    sock.connect(srv_addr);
+
+    std::string line;
+
+    std::getline(std::cin,line);
+    npl::buffer buff(line.begin(),line.end());
+    sock.write(buff);
+
+    npl::buffer response = sock.read(80);
+    std::cout << std::string(response.begin(),response.end()) << std::endl;
+    
+
+    sock.close();
+
+
     return EXIT_SUCCESS;
 }
