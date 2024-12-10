@@ -28,7 +28,7 @@ int main()
 
     }
 
-
+    sock.close();
 
     return EXIT_SUCCESS;
 }
