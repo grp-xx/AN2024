@@ -25,6 +25,7 @@ int main()
     int port=12000;
     npl::sockaddress<AF_INET> srv_addr(port);
     npl::socket<AF_INET, SOCK_STREAM> sock;
+    sock.set_reuseaddr();
     sock.bind(srv_addr);
     sock.listen();
 
