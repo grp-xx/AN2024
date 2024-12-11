@@ -22,13 +22,17 @@ int main(int argc, char* argv[])
 
     std::string line;
 
-    std::getline(std::cin,line);
-    npl::buffer buff(line.begin(),line.end());
-    sock.write(buff);
+    for(;;)
+    {
+        std::getline(std::cin,line);
+        if (line.empty())
+            break;
 
-    npl::buffer response = sock.read(80);
-    std::cout << std::string(response.begin(),response.end()) << std::endl;
-    
+        npl::buffer buff(line.begin(),line.end());
+        sock.write(buff);
+        npl::buffer response = sock.read(80);
+        std::cout << std::string(response.begin(),response.end()) << std::endl;
+    }
 
     sock.close();
 
